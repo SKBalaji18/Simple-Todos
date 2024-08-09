@@ -1,0 +1,25 @@
+li {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+button {
+  height: 30px;
+  align-self: center;
+  background-color: transparent;
+  border: 1px solid #ff0b37;
+  color: #ff0b37;
+  font-size: 16px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #000000;
+  font-family: 'Roboto';
+  padding-left: 0px;
+}
