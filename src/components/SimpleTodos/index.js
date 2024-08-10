@@ -1,4 +1,5 @@
 import {Component} from 'react'
+import {v4 as uuidv4} from 'uuid'
 import TodoItem from '../TodoItem'
 import './index.css'
 
@@ -42,7 +43,10 @@ const initialTodosList = [
 class SimpleTodos extends Component {
   state = {
     todoList: initialTodosList,
+    todo: '',
   }
+
+  onChangeInput = event => this.setState({todo: event.target.value})
 
   deleteTodo = id => {
     const {todoList} = this.state
@@ -51,12 +55,51 @@ class SimpleTodos extends Component {
     })
   }
 
+  addTodo = () => {
+    const {todo} = this.state
+
+    const splitTodo = todo.split(' ')
+
+    if (!Number.isNaN(parseInt(splitTodo[splitTodo.length - 1]))) {
+      const res = []
+      for (let i = 0; i < parseInt(splitTodo[splitTodo.length - 1]); i++) {
+        const r = {
+          id: uuidv4(),
+          title: splitTodo.slice(0, splitTodo.length - 1).join(' '),
+        }
+        res.push(r)
+      }
+      this.setState(prev => ({
+        todo: '',
+        todoList: [...prev.todoList, ...res],
+      }))
+    } else {
+      const id = uuidv4()
+      this.setState(prev => ({
+        todo: '',
+        todoList: [...prev.todoList, {id, title: todo}],
+      }))
+    }
+  }
+
   render() {
-    const {todoList} = this.state
+    const {todoList, todo} = this.state
+
     return (
       <div className="bg-container">
         <div className="card-container">
           <h1 className="heading">Simple Todos</h1>
+          <div className="input-container">
+            <input
+              type="text"
+              placeholder="Type Something"
+              onChange={this.onChangeInput}
+              value={todo}
+            />
+            <button type="button" onClick={this.addTodo}>
+              Add
+            </button>
+          </div>
           <ul>
             {todoList.map(eachItem => (
               <TodoItem

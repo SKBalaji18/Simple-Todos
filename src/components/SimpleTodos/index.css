@@ -12,13 +12,32 @@
   border-radius: 15px;
   padding: 20px;
   width: 80%;
-  min-height: 20vh;
+  min-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .heading {
   font-family: 'Roboto';
   font-size: 32px;
   color: #ff8542;
   text-align: center;
+}
+
+.input-container {
+  width: 100%;
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+input {
+  width: 70%;
+  margin-right: 15px;
+  padding: 8px;
+  outline: none;
 }
 
 @media screen and (max-width: 575px) {
